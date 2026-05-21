@@ -1,5 +1,5 @@
 # Walmart Sales Prediction Project
-![Project Screenshot](screenshot.png)
+![Project Screenshot](Screenshot 2026-05-21 215826.png)
 <h1 align="center">📊 Walmart Sales Prediction Project</h1>
 
 <p align="center">
