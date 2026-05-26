@@ -1,37 +1,34 @@
-# Zepto Product & Inventory Analysis using PostgreSQL
+# Walmart Predictive Sales Analysis using Python & Machine Learning
 
 <p align="center">
-  <img src="screenshots/intro_zepto.png" width="1000" alt="Project Overview"/>
-</p>
-
-<p align="center">
-  <img src="screenshots/Screenshot%202026-05-26%20171625.png" width="1000" alt="SQL Query Output"/>
+  <img src="Screenshot%202026-05-21%20215826.png" width="1000" alt="Walmart Dashboard"/>
 </p>
 
 ---
 
 ## Project Overview
 
-This project analyzes Zepto product and inventory data using PostgreSQL to generate meaningful business insights related to:
+This project focuses on predicting Walmart sales using Machine Learning and Data Analytics techniques. The analysis was performed using Python, Pandas, NumPy, Matplotlib, Seaborn, and Scikit-learn to uncover sales trends, customer behavior, and future sales predictions.
 
-- Product pricing
-- Discounts
-- Inventory availability
-- Category performance
-- Stock management
+The project demonstrates end-to-end predictive analytics including:
 
-The project demonstrates real-world SQL analysis techniques and advanced PostgreSQL concepts commonly used in data analytics and business intelligence.
+- Data Cleaning
+- Exploratory Data Analysis (EDA)
+- Feature Engineering
+- Machine Learning Model Building
+- Sales Prediction
+- Data Visualization
 
 ---
 
 ## Objectives
 
-- Analyze product pricing trends
-- Identify highly discounted products
-- Detect out-of-stock items
-- Perform category-wise analysis
-- Practice advanced PostgreSQL concepts
-- Generate business insights using SQL queries
+- Analyze Walmart sales data
+- Identify important sales patterns
+- Predict future sales using Machine Learning
+- Perform exploratory data analysis
+- Generate business insights from data
+- Build predictive analytics skills
 
 ---
 
@@ -39,146 +36,171 @@ The project demonstrates real-world SQL analysis techniques and advanced Postgre
 
 | Tool | Purpose |
 |------|----------|
-| PostgreSQL | Database Management |
-| SQL | Data Analysis |
-| Power BI | Dashboard Visualization |
+| Python | Data Analysis & Machine Learning |
+| Pandas | Data Cleaning |
+| NumPy | Numerical Operations |
+| Matplotlib | Data Visualization |
+| Seaborn | Statistical Visualization |
+| Scikit-learn | Machine Learning |
+| Jupyter Notebook | Development Environment |
 | GitHub | Project Hosting |
 
 ---
 
 ## Dataset Information
 
-The dataset contains Zepto product and inventory details including:
+The dataset contains Walmart sales-related information such as:
 
-- Product Name
-- Category
-- MRP
-- Discount Percentage
-- Selling Price
-- Stock Availability
-- Product Weight
-- Quantity
+- Store Details
+- Weekly Sales
+- Holiday Events
+- Temperature
+- Fuel Price
+- CPI
+- Unemployment Rate
 
 Dataset File:
 
 ```text
-zepto_v2.csv
+Walmart_Sales.csv
 ```
 
 ---
 
-## SQL Concepts Used
+## Project Workflow
 
-### Basic SQL
-- SELECT
-- WHERE
-- ORDER BY
-- LIMIT
-- COUNT
+```text
+Dataset
+   ↓
+Data Cleaning
+   ↓
+Exploratory Data Analysis
+   ↓
+Feature Engineering
+   ↓
+Machine Learning Model
+   ↓
+Sales Prediction
+   ↓
+Visualization & Insights
+```
 
-### Moderate SQL
-- GROUP BY
-- HAVING
-- Aggregate Functions
-- CASE Statements
+---
 
-### Advanced PostgreSQL
-- Joins
-- CTEs
-- Window Functions
-- Views
-- Materialized Views
-- Stored Procedures
-- Functions
-- Triggers
-- Indexes
-- Transactions
+## Python Libraries Used
+
+```python
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_absolute_error
+from sklearn.metrics import mean_squared_error
+from sklearn.metrics import r2_score
+```
+
+---
+
+## Exploratory Data Analysis (EDA)
+
+Performed detailed analysis on:
+
+- Weekly sales trends
+- Holiday impact on sales
+- Temperature vs Sales
+- Fuel price impact
+- Unemployment trends
+- Store-wise performance
+
+---
+
+## Machine Learning Model
+
+### Model Used
+
+- Linear Regression
+
+### Steps Performed
+
+- Data preprocessing
+- Feature selection
+- Train-test split
+- Model training
+- Prediction generation
+- Performance evaluation
+
+---
+
+## Model Evaluation Metrics
+
+- Mean Absolute Error (MAE)
+- Mean Squared Error (MSE)
+- Root Mean Squared Error (RMSE)
+- R² Score
 
 ---
 
 ## Key Business Insights
 
-- Identified categories with the highest discounts
-- Found products with low inventory availability
-- Analyzed category-wise pricing patterns
-- Ranked expensive products using window functions
-- Detected out-of-stock products
-- Compared average selling prices across categories
+- Holiday seasons significantly increase sales
+- Certain stores consistently outperform others
+- Fuel prices and unemployment affect purchasing behavior
+- Predictive models can estimate future sales trends
 
 ---
 
 ## Project Structure
 
 ```text
-zepto-postgresql-analysis/
+walmart-predictive-analysis/
 │
-├── dataset/
-│   └── zepto_v2.csv
-│
-├── sql_queries/
-│   ├── basic_queries.sql
-│   ├── moderate_queries.sql
-│   ├── advanced_queries.sql
-│
-├── screenshots/
-│   ├── intro_zepto.png
-│   ├── Screenshot 2026-05-26 171625.png
-│   ├── Screenshot 2026-05-26 171716.png
-│   ├── Screenshot 2026-05-26 171839.png
-│
-├── powerbi_dashboard/
-│   └── zepto_dashboard.pbix
-│
-└── README.md
+├── README.md
+├── Screenshot 2026-05-21 215826.png
+├── Walmart_Sales.csv
+└── main.py
 ```
 
 ---
 
-## Sample Advanced SQL Query
+## Sample Machine Learning Code
 
-```sql
-WITH category_stats AS (
+```python
+X = df[['Temperature', 'Fuel_Price', 'CPI', 'Unemployment']]
+y = df['Weekly_Sales']
 
-    SELECT category,
-           COUNT(*) AS total_products,
-           AVG(discountPercent) AS avg_discount,
-           AVG(discountedSellingPrice) AS avg_price
-    FROM zepto
-    GROUP BY category
-
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
 )
 
-SELECT z.category,
-       z.name,
-       z.mrp,
-       z.discountPercent,
-       cs.avg_discount
-FROM zepto z
-JOIN category_stats cs
-ON z.category = cs.category
-WHERE z.discountedSellingPrice > cs.avg_price;
+model = LinearRegression()
+
+model.fit(X_train, y_train)
+
+predictions = model.predict(X_test)
 ```
 
 ---
 
-## Power BI Dashboard Features
+## Data Visualization Features
 
-- KPI Cards
-- Category Analysis
-- Discount Analysis
-- Inventory Monitoring
-- Price Trend Visualization
-- Stock Availability Analysis
+- Sales Trend Charts
+- Correlation Heatmaps
+- Store-wise Sales Analysis
+- Holiday Sales Comparison
+- Prediction Graphs
 
 ---
 
 ## Future Improvements
 
-- Add Python data cleaning
-- Automate ETL pipeline
-- Deploy dashboard online
-- Add machine learning predictions
-- Integrate real-time analytics
+- Add advanced ML algorithms
+- Deploy model using Flask or Streamlit
+- Create real-time dashboard
+- Add deep learning predictions
+- Improve model accuracy
 
 ---
 
@@ -187,15 +209,7 @@ WHERE z.discountedSellingPrice > cs.avg_price;
 ### Dashboard Preview
 
 <p align="center">
-  <img src="screenshots/intro_zepto.png" width="1000"/>
-</p>
-
----
-
-### SQL Query Output
-
-<p align="center">
-  <img src="screenshots/Screenshot%202026-05-26%20171625.png" width="1000"/>
+  <img src="Screenshot%202026-05-21%20215826.png" width="1000"/>
 </p>
 
 ---
@@ -204,11 +218,12 @@ WHERE z.discountedSellingPrice > cs.avg_price;
 
 # Kumaresh Biswas
 
-Aspiring Data Analyst passionate about:
-- PostgreSQL
-- SQL
-- Power BI
+Aspiring Data Analyst & Machine Learning Enthusiast passionate about:
 - Python
+- Data Analytics
+- Machine Learning
+- Power BI
+- SQL
 - Data Visualization
 
 ---
